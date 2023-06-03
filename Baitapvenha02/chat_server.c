@@ -91,7 +91,6 @@ int main(int argc, char *argv[]) {
         
             while (1){
                 ret = recv(client, clientname, sizeof(clientname), 0);
-                printf("clientname: %s", clientname);
                 if (ret <= 0) break;
                 if (checkname(clientname)){
                     break;
