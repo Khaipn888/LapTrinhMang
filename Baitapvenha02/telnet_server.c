@@ -109,8 +109,6 @@ void process_request(int client, char *buf) {
 
                 line[strlen(line) - 2] = line[strlen(line) -1];
                 line[strlen(line) - 1] = '\0';
-               
-                printf("%ld %ld", strlen(line), strlen(tmp));
 
                 if (strcmp(line, tmp) == 0){
                     found = 1;
