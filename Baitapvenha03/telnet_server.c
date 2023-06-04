@@ -9,17 +9,14 @@
 #include <signal.h>
 #include <sys/wait.h>
 
-void signalHandler(int signo)
-{
+void signalHandler(int signo){
     int pid = wait(NULL);
     printf("Child %d terminated.\n", pid);
 }
 
-int main() 
-{
+int main() {
     int listener = socket(AF_INET, SOCK_STREAM, IPPROTO_TCP);
-    if (listener == -1)
-    {
+    if (listener == -1){
         perror("socket() failed");
         return 1;
     }
@@ -29,14 +26,12 @@ int main()
     addr.sin_addr.s_addr = htonl(INADDR_ANY);
     addr.sin_port = htons(9000);
 
-    if (bind(listener, (struct sockaddr *)&addr, sizeof(addr))) 
-    {
+    if (bind(listener, (struct sockaddr *)&addr, sizeof(addr))) {
         perror("bind() failed");
         return 1;
     }
 
-    if (listen(listener, 5)) 
-    {
+    if (listen(listener, 5)) {
         perror("listen() failed");
         return 1;
     }
