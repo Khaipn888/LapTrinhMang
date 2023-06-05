@@ -63,7 +63,8 @@ int main() {
                     handleReturnTime(lenh, format, tmp);
                     send(client, tmp, sizeof(tmp), 0);
                 }else{
-                    char *msg = "Nhap sai cu phap hay nhap lai.\n";
+                    char msg[256];
+                    strcpy(msg, "Sai cu phap.\n");
                     send(client, msg, sizeof(msg), 0);
                 }
             }
@@ -96,11 +97,12 @@ void handleReturnTime(char *in1, char *in2, char *out){
                             strftime(out ,256,"Time: %m/%d/%Y\n", info);
                         }else   if(strcmp(in2, "mm/dd/yy") == 0){
                                     strftime(out ,256,"Time: %x\n", info);
-                                }else { out = "Khong ho tro format nay."; }
+                                }else { strcpy(out, "Khong ho tro format nay.\n"); }
 
         return;  
     }else{
-        out = "Lenh sai, moi nhap lai.\n";
+        strcpy(out,"Lenh sai, moi nhap lai.\n" ) ;
+        printf("da chay den day");
         return;
     }
 
